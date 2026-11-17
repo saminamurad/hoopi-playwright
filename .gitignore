@@ -1,0 +1,17 @@
+# Installed packages (re-created with npm install)
+node_modules/
+
+# SECRETS - never push these
+.env
+playwright/.auth/
+playwright/.chrome-profile/
+
+# Raw run output (can contain login cookies in traces) - only results/ is shared
+test-results/
+playwright-report/
+blob-report/
+
+# Windows / editor clutter
+Thumbs.db
+desktop.ini
+~$*

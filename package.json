@@ -1,0 +1,27 @@
+{
+  "name": "hoopi-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automated UI tests for app.hoopi.ai (KHome first), mapped to the QA test sheet TC IDs",
+  "scripts": {
+    "auth": "node scripts/save-login.mjs",
+    "test": "playwright test --project=chrome --grep-invert @ai",
+    "test:safe": "playwright test --project=chrome --grep-invert \"@writes|@ai\"",
+    "test:ai": "playwright test --project=chrome --grep @ai",
+    "test:ui": "playwright test --ui --project=chrome",
+    "test:headed": "playwright test --project=chrome --headed",
+    "test:all-browsers": "playwright test --grep-invert \"@writes|@ai\"",
+    "report": "playwright show-report",
+    "codegen": "playwright codegen --load-storage=playwright/.auth/user.json https://app.hoopi.ai/dashboard/khome",
+    "sheet": "node scripts/results-to-sheet.mjs",
+    "cases": "playwright test --list --project=chrome --reporter=json > test-results/list.json && node scripts/cases-to-sheet.mjs",
+    "auth:codegen": "playwright codegen --save-storage=playwright/.auth/user.json https://app.hoopi.ai/login",
+    "publish": "node scripts/publish-results.mjs",
+    "share": "node scripts/share-results.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^22.0.0",
+    "dotenv": "^16.4.5"
+  }
+}
